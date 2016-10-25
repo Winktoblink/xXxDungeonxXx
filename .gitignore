@@ -1,0 +1,6 @@
+*.stamp
+*.dll
+*.txt
+*.log
+DungeonGridProject/Temp/*
+DungeonGridProject/Library/UnityAssemblies/*
