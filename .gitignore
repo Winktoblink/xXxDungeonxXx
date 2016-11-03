@@ -2,5 +2,6 @@
 *.dll
 *.txt
 *.log
-DungeonGridProject/Temp/*
-DungeonGridProject/Library/*
+*.info
+DungeonProject/Temp/*
+DungeonProject/Library/*
