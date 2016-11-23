@@ -10,6 +10,8 @@ public class BoardManager : MonoBehaviour {
 	private Transform mBoardHolder;     //An object to hold everything on the board for clean up
 	private List<Vector3> mGridPositions = new List<Vector3>();
 
+	private Map mBoardMap;
+
 	//Initialize a list of positions to track if something is in a certain square
 	void InitializeList() {
 		mGridPositions.Clear();
@@ -24,11 +26,14 @@ public class BoardManager : MonoBehaviour {
 	void BoardSetup() {
 		mBoardHolder = new GameObject("Board").transform;
 
-		//TODO: Insert logic for reading map file and filling in tiles
+		readMapFile ("Maps/emptyMap.json");
 	}
 
-	private void readFile() {
-		//TODO: Read map data in from a file
+	private void readMapFile(String filePath) {
+		TextAsset asset = (TextAsset) Resources.Load(filePath, typeof(TextAsset));
+		String json = asset.text;
+		mBoardMap = JsonUtility.FromJson<Map>(json);
+		Debug.Log (mBoardMap);
 	}
 
 	public void SetupScene(int floorNumber) {
@@ -36,5 +41,12 @@ public class BoardManager : MonoBehaviour {
 		InitializeList();
 
 		//TODO: Add functions for adding player, enemies, items, etc to map
+	}
+
+	[Serializable]
+	public class Map{
+		private int mWidth;
+		private int mHeight;
+		private int[][] mGrid;
 	}
 }
